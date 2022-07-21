@@ -41,6 +41,6 @@ const requiredRanges = [
 for (const range of requiredRanges) {
   console.log(range);
   for (const course of courses) {
-      if (checkPrice(...range, course))console.log(course)
+      if (checkPrice(...range, course)) console.log(course)
   }
 }
