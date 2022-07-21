@@ -14,9 +14,7 @@ const checkRequirePrice = (reqLess, reqGreat, priceLess, priceGreat) => {
 
 const check = (requireLess, requireGreat, priceLess, priceGreat) => {
   checkRequirePrice(requireLess, requireGreat, priceLess, priceGreat);
-  return ((priceLess > requireGreat) || (priceGreat < requireLess))
-    ? false 
-    : true;
+  return !((priceLess > requireGreat) || (priceGreat < requireLess));
 }
 
 const checkPrice = (less, great, course) => check(less, great, ...course.prices);
