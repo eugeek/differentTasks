@@ -20,7 +20,7 @@ const check = (requireLess, requireGreat, priceLess, priceGreat) => {
 const checkPrice = (less, great, course) => check(less, great, ...course.prices);
 
 // Task
-const courses = [
+let courses = [
   { name: "Courses in England", prices: [0, 100] },
   { name: "Courses in Germany", prices: [500, Infinity] },
   { name: "Courses in Italy", prices: [100, 200] },
@@ -31,15 +31,11 @@ const courses = [
   { name: "Courses in France", prices: [0, Infinity] },
 ];
 
-const requiredRanges = [
-  [0, 200],
-  [100, 350],
-  [200, Infinity],
-];
+let requiredRange1 = [0, 200];
+let requiredRange2 = [100, 350];
+let requiredRange3 =  [200, Infinity];
 
-for (const range of requiredRanges) {
-  console.log(range);
-  for (const course of courses) {
-      if (checkPrice(...range, course)) console.log(course)
-  }
-}
+
+console.log(filterByPrices(...requiredRange1));
+console.log(filterByPrices(...requiredRange2));
+console.log(filterByPrices(...requiredRange3));
