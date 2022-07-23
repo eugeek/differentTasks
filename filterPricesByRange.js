@@ -13,6 +13,10 @@ const checkRequirePrice = (reqLess, reqGreat, priceLess, priceGreat) => {
 };
 
 const check = (requireLess, requireGreat, priceLess, priceGreat) => {
+  if (reqireLess === null) reqireLess = 0;
+  if (reqireGreat === null) requireGreat = Infinity;
+  if (priceLess === null) reqireLess = 0;
+  if (reqireGreat === null) requireGreat = Infinity;
   checkRequirePrice(requireLess, requireGreat, priceLess, priceGreat);
   return !((priceLess > requireGreat) || (priceGreat < requireLess));
 };
