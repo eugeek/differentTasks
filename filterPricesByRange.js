@@ -1,24 +1,34 @@
 // Solution
+const allNum = (...numbers) => numbers.every(num => (typeof num === "number"));
+
+const allAboveZero = (...numbers) => numbers.every(num => (num >= 0));
+
+const checkRequirePrice = (reqLess, reqGreat, priceLess, priceGreat) => {
+  if (!allNum(reqLess, reqGreat, priceLess, priceGreat))
+    throw new Error("Uncorrect type arg");
+  if (!allAboveZero(reqLess, reqGreat, priceLess, priceGreat))
+    throw new Error("Price less than zero");
+  if ((reqGreat < reqLess) || (priceGreat < priceLess))
+    throw new Error("Uncorrect range");
+};
+
 const check = (requireLess, requireGreat, priceLess, priceGreat) => {
-  if (!requireLess) requireLess = 0
-  if (!priceLess) priceLess = 0
+  if (requireLess === null) reqireLess = 0;
+  if (requireGreat === null) requireGreat = Infinity;
+  if (priceLess === null) priceLess = 0;
+  if (priceGreat === null) priceGreat = Infinity;
+  checkRequirePrice(requireLess, requireGreat, priceLess, priceGreat);
+  return !((priceLess > requireGreat) || (priceGreat < requireLess));
+};
 
-  if(!requireGreat && !priceGreat) return true
-  if (!requireGreat) return priceGreat >= requireLess
-  if (!priceGreat) return requireGreat >= priceLess
-
-  if (priceLess > requireGreat || priceGreat < requireLess) return false
-
-  return true
-}
 
 const filterByPrices = (less, great) => {
-  let results = []
+  let results = [];
   for (let course of courses) {
-    if (check(less, great, ...course.prices)) results.push(course)
+    if (check(less, great, ...course.prices)) results.push(course);
   }
-  return results
-}
+  return results;
+};
 
 // Task
 let courses = [
@@ -32,10 +42,11 @@ let courses = [
   { name: "Courses in France", prices: [null, null] },
 ];
 
-let requiredRange1 = [null, 200];
+let requiredRange1 = [0, 200];
 let requiredRange2 = [100, 350];
-let requiredRange3 = [200, null];
+let requiredRange3 =  [200, Infinity];
 
-console.log(filterByPrices(...requiredRange1))
-console.log(filterByPrices(...requiredRange2))
-console.log(filterByPrices(...requiredRange3))
+
+console.log(filterByPrices(...requiredRange1));
+console.log(filterByPrices(...requiredRange2));
+console.log(filterByPrices(...requiredRange3));
