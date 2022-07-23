@@ -19,16 +19,25 @@ const check = (requireLess, requireGreat, priceLess, priceGreat) => {
 
 const checkPrice = (less, great, course) => check(less, great, ...course.prices);
 
+
+const filterByPrices = (less, great) => {
+  let results = []
+  for (let course of courses) {
+    if (check(less, great, ...course.prices)) results.push(course)
+  }
+  return results
+}
+
 // Task
 let courses = [
   { name: "Courses in England", prices: [0, 100] },
-  { name: "Courses in Germany", prices: [500, Infinity] },
+  { name: "Courses in Germany", prices: [500, null] },
   { name: "Courses in Italy", prices: [100, 200] },
-  { name: "Courses in Russia", prices: [0, 400] },
+  { name: "Courses in Russia", prices: [null, 400] },
   { name: "Courses in China", prices: [50, 250] },
-  { name: "Courses in USA", prices: [200, Infinity] },
+  { name: "Courses in USA", prices: [200, null] },
   { name: "Courses in Kazakhstan", prices: [56, 324] },
-  { name: "Courses in France", prices: [0, Infinity] },
+  { name: "Courses in France", prices: [null, null] },
 ];
 
 let requiredRange1 = [0, 200];
