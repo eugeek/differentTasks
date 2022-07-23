@@ -1,32 +1,30 @@
 // Solution
-const allNum = (...numbers) => numbers.every(num => (typeof num === 'number'));
+const allNum = (...numbers) => numbers.every(num => (typeof num === "number"));
 
 const allAboveZero = (...numbers) => numbers.every(num => (num >= 0));
 
 const checkRequirePrice = (reqLess, reqGreat, priceLess, priceGreat) => {
   if (!allNum(reqLess, reqGreat, priceLess, priceGreat))
-    throw new Error('Uncorrect type arg');
+    throw new Error("Uncorrect type arg");
   if (!allAboveZero(reqLess, reqGreat, priceLess, priceGreat))
-    throw new Error('Price less than zero');
+    throw new Error("Price less than zero");
   if ((reqGreat < reqLess) || (priceGreat < priceLess))
-    throw new Error('Uncorrect range');
-}
+    throw new Error("Uncorrect range");
+};
 
 const check = (requireLess, requireGreat, priceLess, priceGreat) => {
   checkRequirePrice(requireLess, requireGreat, priceLess, priceGreat);
   return !((priceLess > requireGreat) || (priceGreat < requireLess));
-}
-
-const checkPrice = (less, great, course) => check(less, great, ...course.prices);
+};
 
 
 const filterByPrices = (less, great) => {
-  let results = []
+  let results = [];
   for (let course of courses) {
-    if (check(less, great, ...course.prices)) results.push(course)
+    if (check(less, great, ...course.prices)) results.push(course);
   }
-  return results
-}
+  return results;
+};
 
 // Task
 let courses = [
